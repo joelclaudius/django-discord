@@ -12,7 +12,7 @@ def home(request):
     return render(request, 'base/home.html', context)
 
 def room(request, pk):
-    room = get_object_or_404(Room, id=pk)
+    room = Room.objects.get(id=pk)
     context = {'room': room}
     return render(request, 'base/room.html', context)
 
@@ -39,4 +39,13 @@ def updateRoom(request, pk):
 
     context = {'form':form}
     return render(request, 'base/room_form.html', context)
+
+def deleteRoom(request, pk):
+    room = Room.objects.get(id=pk)
+    if request.method == 'POST':
+        room.delete()
+        return redirect('home')
+
+    return render(request, 'base/delete.html', {'obj':room})
+
 
