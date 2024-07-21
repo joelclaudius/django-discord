@@ -1,0 +1,8 @@
+__pycache__
+db.sqlite3
+myenv
+base/_pycache_
+migrations
+base/migrations
+base/migrations/_pycache_
+ base/__pycache__/urls.cpython-312.pyc
