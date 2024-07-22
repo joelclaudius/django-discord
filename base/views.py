@@ -6,6 +6,7 @@ from django.db.models import Q
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 from .models import Room, Topic
 from .forms import RoomForm
@@ -43,6 +44,11 @@ def loginPage(request):
 def logoutUser(request):
     logout(request)
     return redirect('home')
+
+def registerUser(request):
+    page='register'
+    return render(request, 'base/login_register.html')
+
 
 
 def home(request):
