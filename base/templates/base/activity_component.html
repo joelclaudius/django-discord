@@ -1,8 +1,8 @@
-{% for message in room_messages %}
 <div class="activities">
   <div class="activities__header">
     <h2>Recent Activities</h2>
   </div>
+  {% for message in room_messages %}
   <div class="activities__box">
     <div class="activities__boxHeader roomListRoom__header">
       <a
@@ -14,11 +14,12 @@
         </div>
         <p>
           @{{message.user}}
-          <span>5 days ago</span>
+          <span>{{message.created|timesince}} ago</span>
         </p>
       </a>
+      {% if request.user == message.user %}
       <div class="roomListRoom__actions">
-        <a href="#">
+        <a href="{% url 'delete-message' message.id %}">
           <svg
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -33,28 +34,16 @@
           </svg>
         </a>
       </div>
+      {% endif %}
     </div>
     <div class="activities__boxContent">
       <p>
-        replied to post “<a href="room.html">100 Days of code challenge!</a>”
+        replied to post “<a href="{% url 'room' message.room.id %}"
+          >{{message.room}}</a
+        >”
       </p>
-      <div class="activities__boxRoomContent">
-        I’ll have to try this sometime. Really like this idea. Wanna talk about
-        it? I ‘m....
-      </div>
+      <div class="activities__boxRoomContent">{{message}}</div>
     </div>
   </div>
-</div>
-{% endfor %} {% for message in room_messages %}
-<div>
-  <small
-    ><a href="{% url 'user-profile' message.user.id%}">@{{message.user}}</a>
-    {{message.created|timesince}}</small
-  >
-  <small>replied to "{{message.room}}" </small>
-  <p>{{message}}</p>
-  {% if request.user == message.user %}
-  <a href="{% url 'delete-message' message.id %}">Delete</a>
-  {% endif %}
-  <hr />
+  {% endfor %}
 </div>
