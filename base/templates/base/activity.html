@@ -5,7 +5,7 @@
     <div class="layout__box">
       <div class="layout__boxHeader">
         <div class="layout__boxTitle">
-          <a href="index.html">
+          <a href="{% url 'home'%}">
             <svg
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
@@ -24,19 +24,24 @@
       </div>
 
       <div class="activities-page layout__body">
+        {% for message in room_messages %}
         <div class="activities__box">
           <div class="activities__boxHeader roomListRoom__header">
-            <a href="profile.html" class="roomListRoom__author">
+            <a
+              href="{% url 'user-profile' message.user.id%}"
+              class="roomListRoom__author"
+            >
               <div class="avatar avatar--small">
                 <img src="https://randomuser.me/api/portraits/women/11.jpg" />
               </div>
               <p>
-                @sulamita_ivy
-                <span>5 days ago</span>
+                @{{message.user}}
+                <span>{{message.created|timesince}} ago</span>
               </p>
             </a>
+            {% if request.user == message.user %}
             <div class="roomListRoom__actions">
-              <a href="#">
+              <a href="{% url 'delete-message' message.id %}">
                 <svg
                   version="1.1"
                   xmlns="http://www.w3.org/2000/svg"
@@ -51,21 +56,19 @@
                 </svg>
               </a>
             </div>
+            {% endif %}
           </div>
           <div class="activities__boxContent">
             <p>
-              replied to post “<a href="room.html"
-                >100 Days of code challenge!</a
+              replied to post “<a href="{% url 'room' message.room.id %}"
+                >{{message.room}}</a
               >”
             </p>
-            <div class="activities__boxRoomContent">
-              I’ll have to try this sometime. Really like this idea. Wanna talk
-              about it? I ‘m....
-            </div>
+            <div class="activities__boxRoomContent">{{message}}</div>
           </div>
         </div>
+        {% endfor %}
 
-        <div class="activities__box">
           <div class="activities__boxHeader roomListRoom__header">
             <a href="profile.html" class="roomListRoom__author">
               <div class="avatar avatar--small active">
