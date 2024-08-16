@@ -65,12 +65,23 @@ WSGI_APPLICATION = 'studyapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# settings.py
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'studyroom',  # Database name
+        'USER': 'studyroom_owner',  # Database user
+        'PASSWORD': 'o1X5kbQcjhtm',  # Database password
+        'HOST': 'ep-raspy-butterfly-a5jxysme.us-east-2.aws.neon.tech',  # Database host
+        'PORT': '',  # Default port is fine, can be left empty
+        'OPTIONS': {
+            'sslmode': 'require',  # SSL mode required
+        },
     }
 }
+
+
 
 
 # Password validation
