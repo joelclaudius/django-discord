@@ -82,19 +82,12 @@
               class="room__author"
             >
               <div class="avatar avatar--small">
-                <img src="https://randomuser.me/api/portraits/men/37.jpg" />
+                <img src="{{room.host.avatar.url}}" />
               </div>
               <span>@{{room.host.username}}</span>
             </a>
           </div>
-          {% comment %}
-          <div class="room__details">
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quasi,
-            tenetur laudantium? Dicta repellendus rerum consectetur, voluptatem
-            repudiandae eum ea porro cupiditate provident nulla, deserunt, ab
-            ipsum corporis laboriosam deleniti molestias?
-          </div>
-          {% endcomment %}
+
           <span class="room__topics">{{room.topic}}</span>
         </div>
         <div class="room__conversation">
@@ -109,7 +102,7 @@
                   >
                     <div class="avatar avatar--small">
                       <img
-                        src="https://randomuser.me/api/portraits/men/37.jpg"
+                        src="{{message.user.avatar.url}}"
                       />
                     </div>
                     <span>@{{message.user.username}}</span>
@@ -164,7 +157,7 @@
         {% for user in participants%}
         <a href="{% url 'user-profile' user.id %}" class="participant">
           <div class="avatar avatar--medium">
-            <img src="https://randomuser.me/api/portraits/men/37.jpg" />
+            <img src="{{user.avatar.url}}" />
           </div>
           <p>
             {{user.username}}
