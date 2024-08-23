@@ -6,3 +6,4 @@ migrations
 base/migrations
 base/migrations/_pycache_
  base/__pycache__/urls.cpython-312.pyc
+.vercel

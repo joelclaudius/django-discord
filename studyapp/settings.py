@@ -11,9 +11,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -21,10 +19,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
     'base.apps.BaseConfig',
-
     'rest_framework',
+
 ]
 
 AUTH_USER_MODEL = 'base.User'
@@ -61,32 +58,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'studyapp.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-# settings.py
-
+# Database configuration
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'studyroom',  # Database name
-        'USER': 'studyroom_owner',  # Database user
-        'PASSWORD': 'o1X5kbQcjhtm',  # Database password
-        'HOST': 'ep-raspy-butterfly-a5jxysme.us-east-2.aws.neon.tech',  # Database host
-        'PORT': '',  # Default port is fine, can be left empty
+        'NAME': 'studyroom',
+        'USER': 'studyroom_owner',
+        'PASSWORD': 'o1X5kbQcjhtm',
+        'HOST': 'ep-raspy-butterfly-a5jxysme.us-east-2.aws.neon.tech',
+        'PORT': '',
         'OPTIONS': {
-            'sslmode': 'require',  # SSL mode required
+            'sslmode': 'require',
         },
     }
 }
 
-
-
-
 # Password validation
-# https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
-
 AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
@@ -102,32 +89,25 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
-# https://docs.djangoproject.com/en/5.0/topics/i18n/
-
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/5.0/howto/static-files/
-
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 MEDIA_URL = '/images/'
 
+# Directory to collect static files
+STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+# Additional directories to look for static files
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
+# Directory to store media files
 MEDIA_ROOT = BASE_DIR / 'static/images'
-
-# Default primary key field type
-# https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
